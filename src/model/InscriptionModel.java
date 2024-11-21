@@ -24,7 +24,7 @@ public class InscriptionModel {
             checkRoleStmt.setInt(1, userId);
 
             ResultSet roleResult = checkRoleStmt.executeQuery();
-            if (roleResult.next() && "VOLUNTARIO".equals(roleResult.getString("role"))) {
+            if (roleResult.next() && "VOLUNTEER".equals(roleResult.getString("role"))) {
                 // Verificar si el voluntario ya está inscrito en el proyecto
                 String checkInscription = "SELECT * FROM inscriptions WHERE user_id = ? AND project_id = ?;";
                 PreparedStatement checkInscriptionStmt = objConnection.prepareStatement(checkInscription);

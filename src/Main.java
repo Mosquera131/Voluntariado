@@ -29,27 +29,46 @@ public class Main {
             switch (choice) {
                 case "1":
                     // Log in
+
                     email = JOptionPane.showInputDialog("Email please");
+
+                    if (email == null) {
+                        JOptionPane.showMessageDialog(null, "Operación cancelada.");
+                        break; // Regresa al menú
+                    }
                     password = JOptionPane.showInputDialog("Password please");
 
+                    if (password == null) {
+                        JOptionPane.showMessageDialog(null, "Operación cancelada.");
+                        break; // Regresa al menú
+                    }
+
+                     userController.loginUser(email,password);
+
+
                     List<User> listUsers = userController.getAllUser();
+
+
                     boolean flagUser = false;
 
                     for (User user : listUsers) {
-                        if (user.getEmail().equals(email) && user.getPassword().equals(password)) {
+                        if (user.getEmail().equals(email) ) {
                             JOptionPane.showMessageDialog(null, "Logged in as " + user.getRole().name());
-                            flagUser = true;
                             userlogin = user;
+                          flagUser = true;
+
                             break;
                         }
                     }
+                    System.out.println(flagUser);
 
                     if (!flagUser) {
                         JOptionPane.showMessageDialog(null, "User not found.");
                     }
 
                     while (flagUser) {
-                        if (userlogin.getRole().name().equals("PUBLICANTE")) {
+
+                        if (userlogin.getRole().name().equals("PUBLISHER")) {
                             String publisherChoice = menuPublisher();
                             switch (publisherChoice) {
                                 case "1":
@@ -63,15 +82,17 @@ public class Main {
 
                                     projectController.createProject(userlogin.getId(), title, description, startDate, endDate);
                                     break;
+
                                 case "2":
-                                    List<Project> projects = projectController.listAllProjects();
-                                    for (Project project : projects) {
-                                        System.out.println(project.getTitle());
-                                    }
+                                    JOptionPane.showMessageDialog(null, projectController.listAllProjects());
+
                                     break;
+
                                 case "3":
-                                    projectController.showVolunteersByProjects(userlogin.getId());
+                                    JOptionPane.showMessageDialog(null, projectController.showVolunteersByProjects(userlogin.getId()));
+
                                     break;
+
                                 case "4":
                                     flagUser = false;
                                     break;

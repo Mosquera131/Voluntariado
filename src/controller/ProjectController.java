@@ -25,29 +25,34 @@ public class ProjectController {
      * Listar todos los proyectos disponibles.
      */
     public List<Project> listAllProjects() {
-        // Implementa una lógica similar para listar proyectos.
-        // Llamar al método correspondiente en el modelo (si existe)
-        return projectModel.listAllProjects(); // Este método debe implementarse en el modelo.
+
+        return projectModel.listAllProjects();
     }
-    public void showVolunteersByProjects(int userId) {
-        // Fetch projects created by the user (assuming "userId" refers to a publisher)
+
+    public String showVolunteersByProjects(int userId) {
+        StringBuilder result = new StringBuilder();
+
+        // Obtener proyectos del modelo
         List<Project> projects = projectModel.listProjectsByUserId(userId);
 
-        // Iterate over each project and get the volunteers
         for (Project project : projects) {
-            System.out.println("Project: " + project.getTitle());
+            result.append("Project: ").append(project.getTitle()).append("\n");
             List<User> volunteers = projectModel.getVolunteersByProjectId(project.getId());
+
             if (volunteers.isEmpty()) {
-                System.out.println("No volunteers for this project.");
+                result.append("  No volunteers for this project.\n");
             } else {
-                System.out.println("Volunteers: ");
+                result.append("  Volunteers:\n");
                 for (User volunteer : volunteers) {
-                    System.out.println(volunteer.getName());
+                    result.append("    - ").append(volunteer.getName()).append("\n");
                 }
             }
-            System.out.println();
+            result.append("\n");
         }
+
+        return result.toString();
     }
+
     public String getAllString() {
         List<Project> projects = listAllProjects();
         if (projects.isEmpty()) {

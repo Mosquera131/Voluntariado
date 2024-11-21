@@ -22,7 +22,7 @@ public class ProjectModel {
             checkRoleStmt.setInt(1, userId);
 
             ResultSet roleResult = checkRoleStmt.executeQuery();
-            if (roleResult.next() && "PUBLICANTE".equals(roleResult.getString("role"))) {
+            if (roleResult.next() && "PUBLISHER".equals(roleResult.getString("role"))) {
                 // Si es un Publicante, insertamos el proyecto
                 String insertProject = "INSERT INTO projects (title, description, start_date, end_date, created_by) VALUES (?, ?, ?, ?, ?);";
                 PreparedStatement insertStmt = objConnection.prepareStatement(insertProject);

@@ -37,6 +37,7 @@ public class UserModel {
             insertStmt.setString(4, role);
 
             int rowsAffected = insertStmt.executeUpdate();
+
             if (rowsAffected > 0) {
                 JOptionPane.showMessageDialog(null, "Usuario registrado exitosamente.");
                 return true;
@@ -67,7 +68,7 @@ public class UserModel {
                 String storedRole = result.getString("role");
 
                 // Compara la contraseña almacenada (en texto plano o hasheada) con la proporcionada
-                if (storedPassword.equals(password)) {  // Aquí deberías usar una comparación segura (con hash)
+                if (storedPassword !=null &&  storedPassword.equals(password)) {  // Aquí deberías usar una comparación segura (con hash)
                     JOptionPane.showMessageDialog(null, "Inicio de sesión exitoso. Rol: " + storedRole);
                     return true;
                 } else {

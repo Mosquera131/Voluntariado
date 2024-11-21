@@ -17,10 +17,10 @@ public class UserController {
         String name = JOptionPane.showInputDialog("Enter your name:");
         String email = JOptionPane.showInputDialog("Enter your email:");
         String password = JOptionPane.showInputDialog("Enter your password:");
-        String role = JOptionPane.showInputDialog("Enter your role (VOLUNTARIO or PUBLICANTE):").toUpperCase();
+        String role = JOptionPane.showInputDialog("Enter your role (VOLUNTEER or PUBLISHER):").toUpperCase();
 
-        if (!role.equals("VOLUNTARIO") && !role.equals("PUBLICANTE")) {
-            JOptionPane.showMessageDialog(null, "Invalid role. Please enter either 'VOLUNTARIO' or 'PUBLICANTE'.");
+        if (!role.equals("VOLUNTEER") && !role.equals("PUBLISHER")) {
+            JOptionPane.showMessageDialog(null, "Invalid role. Please enter either 'VOLUNTEER' or 'PUBLISHER'.");
             return;
         }
 
